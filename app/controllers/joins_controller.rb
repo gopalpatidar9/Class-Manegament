@@ -1,6 +1,7 @@
 class JoinsController < ApplicationController
 
   
+  
 
   def index
      @classes = current_student.createclasses.order(created_at: :desc)
