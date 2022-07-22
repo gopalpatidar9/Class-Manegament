@@ -1,0 +1,10 @@
+
+
+<%= render @studentassingment %>
+
+<div>
+  <%= link_to "Edit this studentassingment", edit_studentassingment_path(@studentassingment) %> |
+  <%= link_to "Back to studentassingments", studentassingments_path %>
+
+  <%= button_to "Destroy this studentassingment", @studentassingment, method: :delete %>
+</div>

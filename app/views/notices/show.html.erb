@@ -1,0 +1,13 @@
+<br>
+<br>
+<br>
+
+
+<%= render @notice %>
+
+<div>
+  <%= link_to "Edit this notice", edit_notice_path(@notice) %> |
+  <%= link_to "Back to class", createclasses_path %>
+
+  <%= button_to "Destroy this notice", @notice, method: :delete %>
+</div>

@@ -1,0 +1,309 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+<style>
+
+}
+
+.imga img {
+  width: 100%;
+  height: auto;
+}
+
+.imga .btn {
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  color:#fff;
+  
+}
+
+ 
+
+ .imga .btn:hover {
+  color: red;
+} 
+.card {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+        border-style: solid;
+}
+
+.card:hover {
+  background-color:#DAE3F2;
+}
+
+.icon{
+  background-color: #129eaf;
+  border-radius: 50%;
+  width:50px;
+  height:50px;
+  margin-top:12px;
+  float:left;
+}
+.savg{
+  margin: 15px 15px 15px 13px;
+  color:#fff;
+}
+
+.icon2{
+  background-color:#F5731A  ;
+  border-radius: 50%;
+  width:50px;
+  height:50px;
+  margin-top:12px;
+  float:left;
+}
+
+.top-left{
+  position: absolute;
+  top: 8px;
+  left: 300px;
+}
+
+
+.t-l{
+  position: absolute;
+  top: 50px;
+  left: 300px;
+}
+
+.bl{
+  position: absolute;
+  bottom: 40px;
+  left: 320px;
+}
+
+</style>
+
+
+<br>
+   <div style="padding-right:80px; padding-left:80px;">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="navbar-collapse collapse w-100 dual-collapse2 order-1 order-md-0">
+        <ul class="navbar-nav ml-auto text-center">
+            <li class="nav-item active">
+                <%= link_to "Back to classes", joins_path, class:"nav-link" %>
+               
+            </li>
+        </ul>
+    </div>
+    
+    <div class="navbar-collapse collapse w-100 dual-collapse2 order-2 order-md-2">
+        <ul class="navbar-nav mr-auto text-center">
+            
+            <li class="nav-item">
+                <button type="button" class=" btn nav-link" data-bs-toggle="modal" data-bs-target="#examp"> Notice <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">+<%=  @classes.notices.all.count   %>
+                <span class="visually-hidden">unread messages</span>
+                </span></button>
+            </li>&nbsp&nbsp&nbsp
+
+            <li class="nav-item">
+                <button type="button" class=" btn nav-link" data-bs-toggle="modal" data-bs-target="#exampl"> Timetable</button>
+            </li>
+
+            <li class="nav-item">
+                <button type="button" class=" btn nav-link" data-bs-toggle="modal" data-bs-target="#example"> Syllabus</button>
+            </li>
+            <li class="nav-item">
+               
+                <button type="button" class=" btn nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal"> Students</button>
+            </li>
+            <li>
+            <div class="dropdown">
+              <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+               Class Work
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><%= link_to " assingments", new_assingment_path , class:"dropdown-item" %></li>
+                <li><%= link_to " contents", new_content_path ,class:"dropdown-item" %></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </div>
+            <li>
+        </ul>
+        
+    </div>
+</nav>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Pepole</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         <h5 style="color:blue; text-size:30px;"><b>Teacher</b> &nbsp &nbsp <%= @teachers.name %></h5>
+
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <%# <th scope="col">Profile</th> %>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+
+            </tr>
+          </thead>
+          <% @studentsall.each do |data| %>
+          <tbody>
+            <tr>
+              <%# <td><%= data.studentprofile%> </td> 
+              <td> <%= data.name%></td>
+              <td> <%= data.email%></td>
+            
+            </tr>
+            
+          </tbody>
+          <% end %>
+        </table>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="example" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Pepole</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         <% @classes.syllabuses.each do |data|%>
+            <% if data.file.attached?%>
+        <% data.file.each do |attachment| %>
+         <% if attachment.image? %>
+           <%= image_tag attachment, width: "200px"%>
+         <% elsif attachment.video? %>
+            <video width="320" height="240" controls>
+              <source src="<%= rails_blob_url(attachment)%>" type="<%= attachment.content_type %>" />
+            </video>
+          <% else %>  
+             <iframe src="<%= rails_blob_url(attachment) %>" width="100%" height="500px">
+             </iframe>
+         <% end %>  
+        <% end %>
+      <% end %>
+         <% end %>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampl" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Time Table</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         <% @classes.timetables.each do |data|%>
+            <% if data.file.attached?%>
+        <% data.file.each do |attachment| %>
+         <% if attachment.image? %>
+           <%= image_tag attachment, width: "1000px"%>
+         <% elsif attachment.video? %>
+            <video width="320" height="240" controls>
+              <source src="<%= rails_blob_url(attachment)%>" type="<%= attachment.content_type %>" />
+            </video>
+          <% else %>  
+             <iframe src="<%= rails_blob_url(attachment) %>" width="100%" height="500px">
+             </iframe>
+         <% end %>  
+        <% end %>
+      <% end %>
+         <% end %>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="examp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Notice</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         <% @classes.notices.order(created_at: :desc).each do |notice|%>
+           <div class="alert alert-danger" role="alert"><%= notice.massege %></div>
+            <% if notice.file.attached?%>
+              <% notice.file.each do |attachment| %>
+              <% if attachment.image? %>
+                <%= image_tag attachment, width: "1000px"%>
+              <% elsif attachment.video? %>
+                  <video width="320" height="240" controls>
+                    <source src="<%= rails_blob_url(attachment)%>" type="<%= attachment.content_type %>" />
+                  </video>
+                <% else %>  
+                  <iframe src="<%= rails_blob_url(attachment) %>" width="100%" height="500px">
+                  </iframe>
+              <% end %>  
+              <% end %>
+            <% end %>
+         <% end %>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<hr>
+<div class="imga" style="text-align:center; position: relative;  ">
+  <div style="align:center;">
+  <%= image_tag("class.jpg")%>
+  </div >
+  <h3 class="top-left" style="color:#fff">
+  <%= @classes.classname.capitalize%>
+  </h3>
+  <p class="t-l" style="color:#fff">&nbsp;&nbsp;
+  <%= @teachers.name.capitalize%>
+  </p>
+  <div class="bl" >
+  <%= button_to "Delete", @createclass, method: :delete, class:"btn"%>
+  </div>
+</div>  
+  <br>   
+   <% @classes.assingments.order(created_at: :desc).each do |data|%>
+      <div class="card"  style="width: 38rem; box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
+         <%= link_to(new_assingment_studentassingment_path(data)) do %>
+            <div class="card-body" style="color:black;">
+              <div class="icon">
+              <i class="material-icons savg">&#xe85d;</i>
+              </div><br>
+               <p>&nbsp;
+                 <%= @teachers.name.upcase%>
+                 posted a new assingment:
+                 <%= data.title.capitalize%><br>  
+                 &nbsp;<%= data.created_at.strftime("%d  %B, %Y") %> 
+          
+            </div>
+         </div>
+         <br>
+     <% end %>    
+   <% end %> 
+
+   <% @classes.contents.order(created_at: :desc).each do |content|%>
+     <div class="card"  style="width: 38rem; box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;">
+       <%= link_to(content) do %>
+         <div class="card-body" style="color:black;">
+            <div class="icon2">
+              <i class="material-icons savg">&#xe85d;</i>
+            </div><br>
+            <p>&nbsp;
+               <%= @teachers.name.upcase%>
+                 posted a new material:
+                  <%= content.title.capitalize%><br>
+                  &nbsp;<%= content.created_at.strftime("%d  %B, %Y") %>
+            </p>
+         </div> 
+     </div>
+   <% end %> 
+   <% end %>

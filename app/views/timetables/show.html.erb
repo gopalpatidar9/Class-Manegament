@@ -1,0 +1,10 @@
+
+
+<%= render @timetable %>
+
+<div>
+  <%= link_to "Edit this timetable", edit_timetable_path(@timetable) %> |
+  <%= link_to "Back to timetables", timetables_path %>
+
+  <%= button_to "Destroy this timetable", @timetable, method: :delete %>
+</div>

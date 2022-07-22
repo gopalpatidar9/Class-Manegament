@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  classname: MyString
+  collegecode: MyString
+  branchcode: MyString
+  subjectcode: MyString
+
+two:
+  classname: MyString
+  collegecode: MyString
+  branchcode: MyString
+  subjectcode: MyString

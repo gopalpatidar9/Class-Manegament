@@ -1,0 +1,76 @@
+<style>
+.content{
+    color:white;
+    padding-left: 30px;
+}
+
+</style>
+
+<br>
+<br>
+<br>
+
+<%# <%= link_to "join class", join_path %> 
+<div style=" position: fixed; width:200px; right: 0; height:200px; margin-right:20px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;" > 
+ <center> 
+  <%= link_to "", new_join_path , class:"fa fa-plus-square-o" ,style:"font-size:48px;color:blue; margin-top:20px;" %>
+  <hr>
+  <h2 style="color:#1A84F5;"> Join <br> Class</h2>
+ </center>
+</div>    
+<% @classes.each do |data| %>
+
+ <div class="container" >
+   <div>
+      <div class="col-md-10 col-sm-6 content-card "  >
+        <%= link_to(join_path(data.id)) do %>
+          <div class="card-big-shadow ">
+              <div  class="card card-just-text colorme " data-background="color" data-color="blue" data-radius="none">
+                  <div class="content " >
+      
+                       <b style="float:right;  padding-right:20px;"> <%= data.teacher.name.capitalize%></b>
+                      <h1 class="category"><%= data.classname.upcase    %></h1>
+                      <p class="description"><strong>Collegecode:</strong><%= data.collegecode %>&nbsp;&nbsp;<strong>Branchcode:</strong><%= data.branchcode %>&nbsp;&nbsp; <strong>Subjectcode:</strong><%= data.subjectcode %></p>
+                      <div class="dropdown" style="float:right; margin-right:15px; margin-top:-25px;">
+
+                      <i class="fa fa-ellipsis-v" style="font-size:20px; color:withe;" class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                      
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                       <%= button_to "Remove", @join, method: :delete, class:"dropdown-item" %>
+                        <%# <li><%= link_to "Edit", edit_content_path(@content) , class:"dropdown-item" %></li> 
+                        <%# <li><%= button_to "Destroy this content", @content, method: :delete , class:"dropdown-item" %></li> 
+                      </ul>
+                    </div>
+                        
+                    
+                  </div>
+                     
+              </div> <!-- end card -->
+          </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <% end %>  
+ <% end %>
+
+
+
+
+<script type="text/javascript">
+        var colors_1 = [' #493240 ','#073F1A','#0A3383 '];   //dark colors
+        var colors_2 = [' #f09',    '#87EFAA','#6D9BF6 '];    //light colors
+        var x = document.getElementsByClassName('colorme');
+        for (i=0;i<x.length;i++)
+        {
+            var index = Math.floor(Math.random() * colors_1.length);
+            var random_color_1 = colors_1[index];
+            var random_color_2 = colors_2[index];
+            var ans = "linear-gradient(90deg, " + random_color_1 + ", " + random_color_2 + ")";
+            x[i].style.background = ans;
+            // alert(ans);
+        }
+//////////////////////////////////////////////////////
+
+    
+</script>

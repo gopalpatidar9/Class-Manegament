@@ -1,0 +1,12 @@
+
+
+<div id="notices">
+  <% @notices.each do |notice| %>
+    <%= render notice %>
+    <p>
+      <%= link_to "Show this notice", notice %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New notice", new_notice_path %>

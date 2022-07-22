@@ -1,0 +1,134 @@
+
+<link rel="stylesheet"href="https://fonts.googleapis.com/css?family=Tangerine">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.content{
+    color:white;
+    padding-left: 30px;
+}
+
+</style>
+
+   <br>
+   <br>
+   <br>  
+
+
+
+
+<div style=" position: fixed; width:200px; right: 0; height:200px; margin-right:20px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;" > 
+ <center> 
+  <%= link_to "", new_createclass_path , class:"fa fa-plus-square-o" ,style:"font-size:48px;color:blue; margin-top:20px;" %>
+  <hr>
+  <h2 style="color:#1A84F5;"> Create  <br> Class</h2>
+ </center>
+</div>
+
+
+
+<% @createclasses.each do |createclass| %>
+<% if createclass.teacher == current_teacher%>
+  <div class="container" >
+  
+    <div >
+      <div class="col-md-10 col-sm-6 content-card "  >
+       <%= link_to(createclass) do %>
+          <div class="card-big-shadow ">
+              <div  class="card card-just-text colorme " data-background="color" data-color="blue" data-radius="none">
+                  <div class="content " >
+      
+                       <b style="float:right;  padding-right:20px;"> <%= current_teacher.name.capitalize%></b>
+                      <h1 class="category"><%= createclass.classname.upcase    %></h1>
+                      <p class="description"><strong>Collegecode:</strong><%= createclass.collegecode %>&nbsp;&nbsp;<strong>Branchcode:</strong><%= createclass.branchcode %>&nbsp;&nbsp; <strong>Subjectcode:</strong><%= createclass.subjectcode %></p>
+                      
+                       <div class="dropdown" style="float:right; margin-right:15px; margin-top:-25px;">
+
+                      <i class="fa fa-ellipsis-v" style="font-size:20px; color:withe;" class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></i>
+                      
+                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                       <%= button_to "Remove", @createclass, method: :delete, class:"dropdown-item" %>
+                        <%# <li><%= link_to "Edit", edit_content_path(@content) , class:"dropdown-item" %></li> 
+                        <%# <li><%= button_to "Destroy this content", @content, method: :delete , class:"dropdown-item" %></li> 
+                      </ul>
+                    </div>
+                        
+                    
+                  </div>
+                     
+              </div> <!-- end card -->
+          </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <% end %>  
+<% end %>
+<% end %> 
+
+
+<script type="text/javascript">
+        var colors_1 = [' #493240 ','#073F1A','#0A3383 '];   //dark colors
+        var colors_2 = [' #f09',    '#87EFAA','#6D9BF6 '];    //light colors
+        var x = document.getElementsByClassName('colorme');
+        for (i=0;i<x.length;i++)
+        {
+            var index = Math.floor(Math.random() * colors_1.length);
+            var random_color_1 = colors_1[index];
+            var random_color_2 = colors_2[index];
+            var ans = "linear-gradient(90deg, " + random_color_1 + ", " + random_color_2 + ")";
+            x[i].style.background = ans;
+            // alert(ans);
+        }
+//////////////////////////////////////////////////////
+
+    
+</script>
+
+<script>
+    function getElementsByClassName('display_random_image')
+{
+     var theImages = [{
+        src: "logo.png",
+       
+    }, {
+        src: "logo1.png",
+        
+    }, {
+        src: "logo2.png",
+        
+    }];
+    
+    var preBuffer = [];
+    for (var i = 0, j = theImages.length; i < j; i++) {
+        preBuffer[i] = new Image();
+        preBuffer[i].src = theImages[i].src;
+        preBuffer[i].width = theImages[i].width;
+        preBuffer[i].height = theImages[i].height;
+    }
+   
+// create random image number
+  function getRandomInt(min,max) 
+    {
+      //  return Math.floor(Math.random() * (max - min + 1)) + min;
+    
+imn = Math.floor(Math.random() * (max - min + 1)) + min;
+    return preBuffer[imn];
+    }  
+​
+// 0 is first image,   preBuffer.length - 1) is  last image
+  
+var newImage = getRandomInt(0, preBuffer.length - 1);
+ 
+// remove the previous images
+var images = document.getElementsByTagName('img');
+var l = images.length;
+for (var p = 0; p < l; p++) {
+    images[0].parentNode.removeChild(images[0]);
+}
+// display the image  
+document.body.appendChild(newImage);
+}
+</script>
+    

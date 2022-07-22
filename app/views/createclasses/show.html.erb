@@ -1,0 +1,384 @@
+<style>
+
+}
+
+.imga img {
+  width: 100%;
+  height: auto;
+}
+
+.imga .btn {
+  position: absolute;
+  top: 50%;
+  left: 20%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  color:#fff;
+}
+
+.imga .btn:hover {
+  color: red;
+}
+
+.section_our_solution .row {
+  align-items: center;
+}
+
+.our_solution_category {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.our_solution_category .solution_cards_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.solution_cards_box .solution_card {
+  flex: 0 50%;
+  background: #fff;
+  box-shadow: 0 2px 4px 0 rgba(136, 144, 195, 0.2),
+    0 5px 15px 0 rgba(37, 44, 97, 0.15);
+  border-radius: 15px;
+  margin: 8px;
+  padding: 10px 15px;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  min-height: 265px;
+  transition: 0.7s;
+}
+
+.solution_cards_box .solution_card:hover {
+  background: #309df0;
+  color: #fff;
+  transform: scale(1.1);
+  z-index: 9;
+}
+
+.solution_cards_box .solution_card:hover::before {
+  background: rgb(85 108 214 / 10%);
+}
+
+.solution_cards_box .solution_card:hover .solu_title h3,
+.solution_cards_box .solution_card:hover .solu_description p {
+  color: #fff;
+}
+
+.solution_cards_box .solution_card:before {
+  content: "";
+  position: absolute;
+  background: rgb(85 108 214 / 5%);
+  width: 170px;
+  height: 400px;
+  z-index: -1;
+  transform: rotate(42deg);
+  right: -56px;
+  top: -23px;
+  border-radius: 35px;
+}
+
+.solution_cards_box .solution_card:hover .solu_description button {
+  background: #fff !important;
+  color: #309df0;
+}
+
+.solution_card .so_top_icon {
+}
+
+.solution_card .solu_title h3 {
+  color: #212121;
+  font-size: 1.3rem;
+  margin-top: 13px;
+  margin-bottom: 13px;
+}
+
+.solution_card .solu_description p {
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.solution_card .solu_description button {
+  border: 0;
+  border-radius: 15px;
+  background: linear-gradient(
+    140deg,
+    #42c3ca 0%,
+    #42c3ca 50%,
+    #42c3cac7 75%
+  ) !important;
+  color: #fff;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 5px 16px;
+}
+
+.our_solution_content h1 {
+  text-transform: capitalize;
+  margin-bottom: 1rem;
+  font-size: 2.5rem;
+}
+.our_solution_content p {
+}
+
+.hover_color_bubble {
+  position: absolute;
+  background: rgb(54 81 207 / 15%);
+  width: 100rem;
+  height: 100rem;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  top: 16rem;
+  border-radius: 50%;
+  transform: rotate(-36deg);
+  left: -18rem;
+  transition: 0.7s;
+}
+
+.solution_cards_box .solution_card:hover .hover_color_bubble {
+  top: 0rem;
+}
+
+.solution_cards_box .solution_card .so_top_icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #fff;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.solution_cards_box .solution_card .so_top_icon img {
+  width: 40px;
+  height: 50px;
+  object-fit: contain;
+}
+
+/*start media query*/
+@media screen and (min-width: 320px) {
+  .sol_card_top_3 {
+    position: relative;
+    top: 0;
+  }
+
+  .our_solution_category {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .our_solution_category .solution_cards_box {
+    flex: auto;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .our_solution_category .solution_cards_box {
+    flex: 1;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .sol_card_top_3 {
+    position: relative;
+    top: -3rem;
+  }
+  .our_solution_category {
+    width: 50%;
+    margin: 0 auto;
+  }
+}
+
+.imga .btn1 {
+  position: absolute;
+  top: 34%;
+  left: 20%;
+  transform: translate(-50%, -100%);
+  -ms-transform: translate(-100%, -50%);
+  color:#fff;
+  
+}
+
+.top-left{
+  position: absolute;
+  top: 8px;
+  left: 300px;
+}
+
+
+.t-l{
+  position: absolute;
+  top: 50px;
+  left: 300px;
+}
+
+.bl{
+  position: absolute;
+  bottom: 40px;
+  left: 320px;
+}
+
+</style>
+
+<div style="padding-right:80px; padding-left:80px;">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="navbar-collapse collapse w-100 dual-collapse2 order-1 order-md-0">
+        <ul class="navbar-nav ml-auto text-center">
+            <li class="nav-item active">
+                <%= link_to "Back to createclasses", createclasses_path, class:"nav-link" %>
+               
+            </li>
+        </ul>
+    </div>
+    
+    <div class="navbar-collapse collapse w-100 dual-collapse2 order-2 order-md-2">
+        <ul class="navbar-nav mr-auto text-center">
+
+             <li class="nav-item">
+                <button type="button" class=" btn nav-link" data-bs-toggle="modal" data-bs-target="#examp">Notic</button>
+             </li>
+
+            <li class="nav-item">
+                <button type="button" class=" btn nav-link" data-bs-toggle="modal" data-bs-target="#exampl">Timetable</button>
+            </li>
+
+            <li class="nav-item">
+                <button type="button" class=" btn nav-link" data-bs-toggle="modal" data-bs-target="#example"> Syllabus</button>
+            </li>
+            <li class="nav-item">
+               
+                <button type="button" class=" btn nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal"> Students</button>
+            </li>
+            <li>
+            <div class="dropdown">
+              <button class="btn nav-link dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+               Class Work
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li><%= link_to "New assingment", new_assingment_path , class:"dropdown-item" %></li>
+                <li><%= link_to "New content", new_content_path ,class:"dropdown-item" %></li>
+                <li><%= link_to "New test", new_quiz_path ,class:"dropdown-item" %></li>
+              </ul>
+            </div>
+            <li>
+        </ul>
+        
+    </div>
+</nav>
+</div>
+
+ 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Students</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <%# <th scope="col">Profile</th> %>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+
+            </tr>
+          </thead>
+          <% @students.each do |data| %>
+          <tbody>
+            <tr>
+              <%# <td><%= data.studentprofile%> </td> 
+              <td> <%= data.name%></td>
+              <td> <%= data.email%></td>
+            
+            </tr>
+            
+          </tbody>
+          <% end %>
+        </table>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="example" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Syllabus</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+           <%= render template: "syllabuses/index" %> 
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampl" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Timetable</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+           <%= render template: "timetables/index" %> 
+      </div>
+      
+    </div>
+  </div>  
+</div>
+  
+  <div class="modal fade" id="examp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">notice</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+           <%= render template: "notices/index" %> 
+      </div>
+      
+    </div>
+  </div>  
+</div>
+
+
+  
+<hr>
+<div class="imga" style="text-align:center; position: relative">
+  <div style="align:center;">
+  <%= image_tag("class.jpg")%>
+  </div >
+  <h3 class="top-left" style="color:#fff">
+  <%= @createclass.classname.capitalize%>
+  </h3>
+  <p class="t-l" style="color:#fff">&nbsp;&nbsp;
+  <%= @createclass.teacher.name.capitalize%>
+  </p>
+  <div class="bl" >
+  <%= button_to "Delete", @createclass, method: :delete, class:"btn"%>
+  </div>
+</div>
+<br>
+
+
+    
+     
+<div>
+   <%= render template: "assingments/index" %>
+   <%= render template: "contents/index" %> 
+  
+</div>
+
+
+
+

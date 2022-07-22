@@ -1,0 +1,43 @@
+
+<br>
+<h3 style="text-align:center;">Studentassingments</h3>
+<br>
+<div id="studentassingments">
+  <% @studentassingments.each do |studentassingment| %>
+
+    <center> 
+   <div class="card" data-bs-toggle="modal" data-bs-target="#exampl" style=" width:1000px; box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;"> 
+    <div class="cred body">
+     <h5 style="color:#900C3F "><b>Student Name</b> = <%= studentassingment.student_name%></h5>
+     <% if @assingment.duedate < studentassingment.created_at%>
+        <p style="color:red;">Missing</p>
+     <% end %>
+    <p>
+      <% if studentassingment.file.attached?%>
+        <% studentassingment.file.each do |attachment| %>
+         <% if attachment.image? %>
+           <%= image_tag attachment, width: "200px"%>
+         <% elsif attachment.video? %>
+            <video width="320" height="240" controls>
+              <source src="<%= rails_blob_url(attachment)%>" type="<%= attachment.content_type %>" />
+            </video>
+          <% else %>  
+             <iframe src="<%= rails_blob_url(attachment) %>" width="100px" height="50px">
+             </iframe>
+         <% end %>  
+        <% end %>
+      <% end %>
+      
+    </p>
+    </div>
+    </div>
+  
+  <br>
+  <% end %>
+</div>
+
+</center>    
+
+
+
+

@@ -1,0 +1,34 @@
+<div id="<%= dom_id content %>">
+  <p>
+    <strong>Title:</strong>
+    <%= content.title %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= content.description %>
+  </p>
+
+  <p>
+    <strong>Link:</strong>
+    <a href="<%= content.link %>"><%= content.link %></a>
+  </p>
+
+  <p>
+     <% if content.file.attached?%>
+        <% content.file.each do |attachment| %>
+         <% if attachment.image? %>
+           <%= image_tag attachment, width: "200px"%>
+         <% elsif attachment.video? %>
+            <video width="320" height="240" controls>
+              <source src="<%= rails_blob_url(attachment)%>" type="<%= attachment.content_type %>" />
+            </video>
+          <% else %>  
+             <iframe src="<%= rails_blob_url(attachment) %>" width="100%" height="500px">
+             </iframe>
+         <% end %>  
+        <% end %>
+      <% end %>
+    <p>
+
+</div>

@@ -1,0 +1,104 @@
+<style>
+  body {
+      font-family: 'Lato', sans-serif
+  }
+
+  h1 {
+      margin-bottom: 40px
+  }
+
+  label {
+      color: #333
+  }
+
+  .btn-send {
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      width: 80%;
+      margin-left: 3px
+  }
+
+  .help-block.with-errors {
+      color: #ff5050;
+      margin-top: 5px
+  }
+
+  .card {
+      margin-left: 10px;
+      margin-right: 10px
+  }
+</style>
+
+
+<%= form_with(model: content) do |form| %>
+  <% if content.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(content.errors.count, "error") %> prohibited this content from being saved:</h2>
+
+      <ul>
+        <% content.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="container"> <div class=" text-center mt-5 "> 
+          <h1>New Material</h1>
+      </div>
+      <div class="row ">
+          <div class="col-lg-10 mx-auto">
+              <div class="card mt-2 mx-auto p-4 " style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+              <div>
+                <%= link_to "",  createclasses_path, class:"btn-close" %>
+              </div>
+
+                  <div class="card-body">
+                      <div class="container">
+                          <form id="contact-form" role="form">
+                              <div class="controls">
+                                  <div class="row">
+                                      <div class="col-md-6">
+                                          <div class="form-group"> <label for="form_name">Title *</label> 
+                                          <%= form.text_field :title, class:"form-control", id:"form_name" , placeholder:"Please enter your Title", required:"required"  %>
+                                          </div> <br>
+                                      </div>
+                                      <div class="col-md-6"> 
+                                          <div class="form-group"> <label for="form_lastname">Link </label>
+                                          <%= form.url_field :link, class:"form-control", id:"form_name" , placeholder:"Please enter your Link"  %>
+                                          </div>
+                                      </div>
+                                      <div class="col-md-12"> 
+                                          <div class="form-group"> <label for="form_lastname">Description </label> 
+                                          <%= form.rich_text_area :description, class:"form-control", id:"form_name" , placeholder:"Please enter your Description"  %>
+                                          </div><br>
+                                      </div>
+                                      <div class="col-md-6"> 
+                                          <div class="form-group"> <label for="form_lastname">File </label> 
+                                          <%= form.file_field :file, class:"form-control", id:"form_name" , placeholder:"Please enter your File"  %>
+                                          </div>
+                                      </div>
+                                      <div class="col-md-6"> 
+                                            <div class="form-group">
+                                                <%= form.label :classes, class: 'control-group'%>
+                                                <div class="form-control">
+                                                  <%= collection_select( :content, :createclass_id, current_teacher.createclasses, :id, :classname, {}, {:multiple => false} )  %>
+                                                </div>
+                                           
+                                          </div>
+                                      </div>
+                                  </div><br>
+                                      
+                                      <div class="text-center" >
+                                        <%= form.submit 'create Material',  class:"btn btn-primary col-md-4", style:"box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;"  %>
+                                      </div>
+
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+              </div> <!-- /.8 -->
+          </div> <!-- /.row-->
+      </div>
+  </div>
+  <% end %>

@@ -1,0 +1,45 @@
+
+<div id="<%= dom_id assingment %>">
+  <p>
+    <strong>Title:</strong>
+    <%= assingment.title %>
+  </p>
+
+  <p>
+    <strong>Points:</strong>
+    <%= assingment.points %>
+  </p>
+
+  <p>
+    <strong>Duedate:</strong>
+    <%= assingment.duedate %>
+  </p>
+
+  <p>
+    <strong>Topic:</strong>
+    <%= assingment.topic %>
+  </p>
+
+  <p>
+    <strong>Iinstruction:</strong>
+    <%= assingment.instruction %>
+  </p>
+
+   <p>
+     <% if assingment.file.attached?%>
+        <% assingment.file.each do |attachment| %>
+         <% if attachment.image? %>
+           <%= image_tag attachment, width: "200px"%>
+         <% elsif attachment.video? %>
+            <video width="320" height="240" controls>
+              <source src="<%= rails_blob_url(attachment)%>" type="<%= attachment.content_type %>" />
+            </video>
+          <% else %>  
+             <iframe src="<%= rails_blob_url(attachment) %>" width="100px" height="80px">
+             </iframe>
+         <% end %>  
+        <% end %>
+      <% end %>
+    <p>
+
+</div>

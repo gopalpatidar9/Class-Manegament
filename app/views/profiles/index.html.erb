@@ -1,0 +1,23 @@
+<style>
+
+ 
+</style>
+
+
+  
+
+<div id="profiles">
+  <% @profiles.each do |profile| %>
+    
+    <% if profile.teacher == current_teacher%>
+    <%= link_to(profile) do %>
+      <img src="<%= profile.image %>" class="rounded-circle account-img" alt="..." style="width: 45px; height: 45px;">
+    
+    <% end %>
+        
+   <% end %>
+  <% end %>
+</div>
+   
+
+   

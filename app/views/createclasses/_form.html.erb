@@ -1,0 +1,102 @@
+
+<style>
+body {
+    font-family: 'Lato', sans-serif
+}
+
+h1 {
+    margin-bottom: 40px
+}
+
+label {
+    color: #333
+}
+
+.btn-send {
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    width: 80%;
+    margin-left: 3px
+}
+
+.help-block.with-errors {
+    color: #ff5050;
+    margin-top: 5px
+}
+
+.card {
+    margin-left: 10px;
+    margin-right: 10px
+}
+</style>
+
+<%= form_with(model: createclass) do |form| %>
+  <% if createclass.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(createclass.errors.count, "error") %> prohibited this createclass from being saved:</h2>
+
+      <ul>
+        <% createclass.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %> 
+  <div class="container"> <div class=" text-center mt-5 "> 
+          <h1>New Create Class</h1>
+      </div>
+      <div class="row ">
+          <div class="col-lg-7 mx-auto">
+              <div class="card mt-2 mx-auto p-4 " style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+              <div>
+                <%= link_to "", createclasses_path , class:"btn-close" %>
+              </div>
+
+                  <div class="card-body ">
+                      <div class="container">
+                          <form id="contact-form" role="form">
+                              <div class="controls">
+                                  <div class="row">
+                                      <div class="col-md-6">
+                                          <div class="form-group"> <label for="form_name">ClassName *</label> 
+                                          <%= form.text_field :classname, class:"form-control", id:"form_name" , placeholder:"Please enter your ClassName", required:"required"  %>
+                                          </div>
+                                      </div>
+                                      <div class="col-md-6"> 
+                                          <div class="form-group"> <label for="form_lastname">SubjectCode *</label> 
+                                          <%= form.text_field :subjectcode, class:"form-control", id:"form_name" , placeholder:"Please enter your SubjectCode", required:"required"  %>
+                                          </div><br>
+                                      </div>
+                                      <div class="col-md-6"> 
+                                          <div class="form-group"> <label for="form_lastname">BranchCode *</label> 
+                                          <%= form.text_field :branchcode, class:"form-control", id:"form_name" , placeholder:"Please enter your BranchCode", required:"required"  %>
+                                          </div>
+                                      </div>
+                                      <div class="col-md-6"> 
+                                          <div class="form-group"> <label for="form_lastname">CollegeCode *</label> 
+                                          <%= form.text_field :collegecode, class:"form-control", id:"form_name" , placeholder:"Please enter your CollegeCode", required:"required"  %>
+                                          </div><br>
+                                      </div>
+                                      <div class="col-md-6"> 
+                                          <div class="form-group"> <label for="form_lastname">Session *</label> 
+                                          <%= form.text_field :session, class:"form-control", id:"form_name" , placeholder:"Please enter your Session", required:"required"  %>
+                                          </div>
+                                      </div>
+                                  </div><br>
+                                      
+                                      <div class="text-center">
+                                        <%= form.submit  class:"btn btn-primary col-md-4", style:"box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;"  %>
+                                      </div>
+
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+              </div> <!-- /.8 -->
+          </div> <!-- /.row-->
+      </div>
+  </div>
+<% end %>  
+
+

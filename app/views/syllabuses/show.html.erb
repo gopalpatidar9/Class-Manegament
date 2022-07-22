@@ -1,0 +1,9 @@
+
+<%= render @syllabus %>
+
+<div>
+  <%= link_to "Edit this syllabus", edit_syllabus_path(@syllabus) %> |
+  <%= link_to "Back to syllabuses", syllabuses_path %>
+
+  <%= button_to "Destroy this syllabus", @syllabus, method: :delete %>
+</div>

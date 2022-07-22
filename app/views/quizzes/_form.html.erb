@@ -1,0 +1,36 @@
+<%= form_with(model: quiz) do |form| %>
+  <% if quiz.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(quiz.errors.count, "error") %> prohibited this quiz from being saved:</h2>
+
+      <ul>
+        <% quiz.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :descripation, style: "display: block" %>
+    <%= form.text_field :descripation %>
+  </div>
+
+  <div class="col-md-6"> 
+      <div class="form-group">
+         <%= form.label :classes, class: 'control-group'%>
+            <div class="form-control">
+               <%= collection_select( :quiz, :createclass_id, current_teacher.createclasses, :id, :classname, {}, {:multiple => false} )  %>
+            </div>
+      </div>
+   </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

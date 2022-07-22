@@ -1,0 +1,16 @@
+
+
+<h1>Studentprofiles</h1>
+
+<div id="studentprofiles">
+  <% @studentprofiles.each do |studentprofile| %>
+   <% if studentprofile.student == current_student%>
+    <%= link_to(studentprofile) do %>
+      <img src="<%= studentprofile.image %>" class="rounded-circle account-img" alt="..." style="width: 45px; height: 45px;">
+    
+    <% end %>
+        <% end %>
+   <% end %>
+</div>
+
+<%= link_to "New studentprofile", new_studentprofile_path %>

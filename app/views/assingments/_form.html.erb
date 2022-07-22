@@ -1,0 +1,86 @@
+
+<%= form_with(model: assingment) do |form| %>
+  <% if assingment.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(assingment.errors.count, "error") %> prohibited this assingment from being saved:</h2>
+
+      <ul>
+        <% assingment.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<div class="container"> <div class=" text-center mt-5 "> 
+          <h1>New Assingment</h1>
+      </div>
+      <div class="row ">
+          <div class="col-lg-10 mx-auto">
+              <div class="card mt-2 mx-auto p-4 " style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+              <div>
+                <%= link_to "",  createclasses_path, class:"btn-close" %>
+              </div>
+
+                  <div class="card-body ">
+                      <div class="container">
+                          <form id="contact-form" role="form">
+                              <div class="controls">
+                                  <div class="row">
+                                      <div class="col-md-6">
+                                          <div class="form-group"> <label for="form_title">Title *</label> 
+                                          <%= form.text_field :title, class:"form-control", id:"form_name" , placeholder:"Please enter your Title", required:"required"  %>
+                                          </div>
+                                      </div>
+                                      <div class="col-md-6"> 
+                                          <div class="form-group"> <label for="form_points">Points *</label> 
+                                          <%= form.number_field :points, class:"form-control", id:"form_name" , placeholder:"Please enter your Points", required:"required"  %>
+                                          </div><br>
+                                      </div>
+
+                                      <div class="col-md-12"> 
+                                          <div class="form-group"> <label for="form_lastname">Instruction </label> 
+                                          <%= form.rich_text_area :instruction, class:"form-control", id:"form_name" , placeholder:"Please enter your Instruction (optional)"  %>
+                                          </div>
+                                      </div>
+
+                                      <div class="col-md-6"> 
+                                          <div class="form-group"> <label for="form_duedate">DueDate *</label> 
+                                          <%= form.date_field :duedate, class:"form-control", id:"form_name" , placeholder:"Please enter your DueDate", required:"required"  %>
+                                          </div>
+                                      </div>
+                                      <div class="col-md-6"> 
+                                          <div class="form-group"> <label for="form_topic">Topic *</label> 
+                                          <%= form.text_field :topic, class:"form-control", id:"form_name" , placeholder:"Please enter your Topic", required:"required"  %>
+                                          </div><br>
+                                      </div>
+
+                                      <div class="col-md-6"> 
+                                          <div class="form-group"> <label for="form_file">File </label> 
+                                          <%= form.file_field :file, class:"form-control", id:"form_name" , placeholder:"Please enter your File"  %>
+                                          </div>
+                                      </div>
+
+                                      <div class="col-md-6"> 
+                                            <div class="form-group">
+                                                <%= form.label :classes, class: 'control-group'%>
+                                                <div class="form-control">
+                                                  <%= collection_select( :assingment, :createclass_id, current_teacher.createclasses, :id, :classname, {}, {:multiple => false} )  %>
+                                                </div>
+                                           
+                                          </div>
+                                      </div>
+                                  </div><br>
+                                      
+                                      <div class="text-center">
+                                        <%= form.submit  class:"btn btn-success btn-send pt-2 btn-block col-md-6" %>
+                                      </div>
+
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+              </div> <!-- /.8 -->
+          </div> <!-- /.row-->
+      </div>
+  </div>
+  <% end %>

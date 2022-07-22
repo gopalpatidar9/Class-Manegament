@@ -1,0 +1,14 @@
+
+<h1>Syllabuses</h1>
+
+<div id="syllabuses">
+  <% @syllabuses.each do |syllabus| %>
+  
+    <%= render syllabus %>
+    <p>
+      <%= link_to "Show this syllabus", syllabus %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New syllabus", new_syllabus_path %>

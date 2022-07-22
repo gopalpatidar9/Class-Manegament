@@ -1,0 +1,112 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<style>
+ 
+
+ hr {
+    border: none;
+    border-top: 2px double blue;
+    color: blue;
+    overflow: visible;
+    text-align: center;
+    height: 5px;
+    margin-left:120px;
+    margin-right:120px;
+}
+
+hr:after {
+    background: #fff;
+    content: '§';
+    padding: 0 4px;
+    position: relative;
+    top: -13px;
+}
+
+.mtr{
+  margin-left:120px;
+}
+
+h3{
+  color:blue;
+}
+</style>
+
+<br><br>
+
+   <div class="mtr">
+    <i class="material-icons">&#xe85d;</i>
+  
+    <h3><%= @assingment.title.capitalize %></h3>
+     <h4><%= @assingment.topic.capitalize%></h4>
+    <p> Point - <%= @assingment.points%></p>
+    <p> DueDate - <%= @assingment.duedate.strftime("%d  %B, %Y")%></p>
+   </div>
+<hr>
+ <p style="float:right; margin-top:-45px; margin-right:120px;"> <%= @teachers.name.upcase %> <%= @assingment.created_at.strftime("%d  %B, %Y")%></p>
+ <% if @assingment.instruction.present?%>
+    <div class="card container" style="box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;">
+      <div class="card-body">
+         <%= @assingment.instruction %>
+      </div>
+    </div>
+<% end %>
+
+<% if @assingment.file.attached?%>
+<div class="card container"  style="width: 44rem; height:80px;">
+    <div class="card-body">
+        <div data-bs-toggle="modal" data-bs-target="#example">
+                <% @assingment.file.each do |attachment| %>
+                <% if attachment.image? %>
+                  <%= image_tag attachment, width: "100px"%>
+                <% elsif attachment.video? %>
+                    <video width="100px" height="60" controls>
+                      <source src="<%= rails_blob_url(attachment)%>" type="<%= attachment.content_type %>" />
+                    </video>
+                  <% else %>  
+                    <iframe src="<%= rails_blob_url(attachment) %>" width="100px" height="50px">
+                    </iframe>
+                <% end %>  
+                <% end %>
+             show this material
+            <% end %>
+        </div>
+   </div>  
+</div>
+
+
+<div class="modal fade" id="example" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Pepole</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         <% if @assingment.file.attached?%>
+        <% @assingment.file.each do |attachment| %>
+         <% if attachment.image? %>
+           <%= image_tag attachment, width: "1000px"%>
+         <% elsif attachment.video? %>
+            <video width="800" height="400" controls>
+              <source src="<%= rails_blob_url(attachment)%>" type="<%= attachment.content_type %>" />
+            </video>
+          <% else %>  
+             <iframe src="<%= rails_blob_url(attachment) %>" width="1000px" height="500px">
+             </iframe>
+         <% end %>  
+        <% end %>
+      <% end %>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+ <%= render "form", studentassingment: @studentassingment %>
+
+
+
+
+
+
+

@@ -1,0 +1,124 @@
+<style>
+
+  hr {
+    border: none;
+    border-top: 2px double blue;
+    color: blue;
+    overflow: visible;
+    text-align: center;
+    height: 5px;
+    margin-left:120px;
+    margin-right:120px;
+}
+
+hr:after {
+    background: #fff;
+    content: '§';
+    padding: 0 4px;
+    position: relative;
+    top: -13px;
+}
+
+.mtr{
+  margin-left:120px;
+}
+
+h3{
+  color:blue;
+}
+
+</style>
+
+<br>
+<br>
+
+<div class="mtr">
+<h3>
+<%= @content.title.capitalize%>
+</h3>
+<% if teacher_signed_in? %>
+  <%= current_teacher.name.upcase%> - <%= @content.created_at.strftime("%d  %B, %Y")%>
+<% end %>
+<% if student_signed_in? %>
+  <%= @teachers.name.upcase%> - <%= @content.created_at.strftime("%d  %B, %Y")%>
+<% end %>
+</div>
+
+<% if teacher_signed_in? %>
+<div class="dropdown" style="float:right; margin-right:125px; margin-top:-25px;">
+
+  <i class="fa fa-ellipsis-v" style="font-size:30px; color:blue;" class="btn btn-secondary dropdown-toggle" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"></i>
+  
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li><%= link_to "Edit", edit_content_path(@content) , class:"dropdown-item" %></li>
+    <li><%= button_to "Destroy this content", @content, method: :delete , class:"dropdown-item" %></li>
+  </ul>
+</div>
+<% end %>
+<hr>
+
+<div class="card container" >
+  <div class="card-body">
+    <%= @content.description%>
+  </div>
+</div>
+<br>
+<% if @content.link.present?%>
+<div id="contents">
+    <div class="card container"  style="width: 44rem; height:80px;">
+      <div class="card-body">
+         <i class="fa fa-link" style="font-size:36px; color:#88c2d5;"></i>
+         <a href="<%= @content.link %>"><%= @content.link %></a>
+      </div>
+    </div>
+</div>
+<% end %>
+<% if @content.file.attached?%>
+<div class="card container"  style="width: 44rem; height:80px;">
+    <div class="card-body">
+        <div data-bs-toggle="modal" data-bs-target="#example">
+                <% @content.file.each do |attachment| %>
+                <% if attachment.image? %>
+                  <%= image_tag attachment, width: "100px"%>
+                <% elsif attachment.video? %>
+                    <video width="100px" height="60" controls>
+                      <source src="<%= rails_blob_url(attachment)%>" type="<%= attachment.content_type %>" />
+                    </video>
+                  <% else %>  
+                    <iframe src="<%= rails_blob_url(attachment) %>" width="100px" height="50px">
+                    </iframe>
+                <% end %>  
+                <% end %>
+             show this material
+            <% end %>
+        </div>
+   </div>  
+</div>
+
+<div class="modal fade" id="example" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Pepole</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         <% if @content.file.attached?%>
+        <% @content.file.each do |attachment| %>
+         <% if attachment.image? %>
+           <%= image_tag attachment, width: "1000px"%>
+         <% elsif attachment.video? %>
+            <video width="800" height="400" controls>
+              <source src="<%= rails_blob_url(attachment)%>" type="<%= attachment.content_type %>" />
+            </video>
+          <% else %>  
+             <iframe src="<%= rails_blob_url(attachment) %>" width="1000px" height="500px">
+             </iframe>
+         <% end %>  
+        <% end %>
+      <% end %>
+      </div>
+      
+    </div>
+  </div>
+</div>

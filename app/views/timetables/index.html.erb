@@ -1,0 +1,12 @@
+
+
+<div id="timetables">
+  <% @timetables.each do |timetable| %>
+    <%= render timetable %>
+    <p>
+      <%= link_to "Show this timetable", timetable %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New timetable", new_timetable_path %>

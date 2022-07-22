@@ -1,0 +1,58 @@
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+<style>
+
+
+.card {
+        margin: 0 auto; /* Added */
+        float: none; /* Added */
+        margin-bottom: 10px; /* Added */
+        border-style:solid;
+}
+
+.card:hover {
+  background-color:#DAE3F2;
+}
+
+.icon2{
+  background-color: #F5731A;
+  border-radius: 50%;
+  width:50px;
+  height:50px;
+  margin-top:12px;
+  float:left;
+}
+.savg{
+  margin: 15px 15px 15px 13px;
+  color:#fff;
+}
+</style>
+
+
+
+
+
+
+
+<div id="contents">
+  <% @contents.each do |content| %>
+    <div class="card"  style="width: 45rem;">
+   <%= link_to(content) do %>
+      <div class="card-body ">
+         <div class="icon2">
+          <i class="material-icons savg">&#xe85d;</i>
+         </div><br>
+         <p style="color:black;">&nbsp;
+           <%= current_teacher.name.upcase%>
+                 posted a new material:
+            <%= content.title.capitalize %><br>
+            &nbsp;<%= content.created_at.strftime("%d  %B, %Y") %>
+           
+         </p>
+
+      </div>
+    </div>
+    <% end %>
+  <% end %>
+</div>

@@ -1,0 +1,86 @@
+<style>
+  body {
+      font-family: 'Lato', sans-serif
+  }
+
+  h1 {
+      margin-bottom: 40px
+  }
+
+  label {
+      color: #333
+  }
+
+  .btn-send {
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      width: 80%;
+      margin-left: 3px
+  }
+
+  .help-block.with-errors {
+      color: #ff5050;
+      margin-top: 5px
+  }
+
+  .card {
+      margin-left: 10px;
+      margin-right: 10px
+  }
+</style>
+
+
+<%= form_with(model: studentprofile) do |form| %>
+  <% if studentprofile.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(studentprofile.errors.count, "error") %> prohibited this studentprofile from being saved:</h2>
+
+      <ul>
+        <% studentprofile.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+<div class="container"> <div class=" text-center mt-5 "> 
+          <h1>New Profile</h1>
+      </div>
+      <div class="row ">
+          <div class="col-lg-10 mx-auto">
+              <div class="card mt-2 mx-auto p-4 " style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+              
+
+                  <div class="card-body">
+                      <div class="container">
+                          <form id="contact-form" role="form">
+                              <div class="controls">
+                                  <div class="row">
+                                      
+                                      
+                                      <div class="col-md-6"> 
+                                          <div class="form-group"> <label for="form_lastname">image</label> 
+                                          <%= form.file_field :image, class:"form-control", id:"form_name" , placeholder:"Please select your photo"  %>
+                                          </div>
+                                      </div>
+                                      <div>
+                                        <%= form.number_field :teacher_id , id: :profile_teacher_id, value: current_student.id , type: :hidden %>
+                                      </div>
+                                      
+                                  </div><br>
+                                      
+                                      <div class="text-center" >
+                                        <%= form.submit 'Upload',  class:"btn btn-primary col-md-4", style:"box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;"  %>
+                                      </div>
+
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+              </div> <!-- /.8 -->
+          </div> <!-- /.row-->
+      </div>
+  </div>
+<% end %>
